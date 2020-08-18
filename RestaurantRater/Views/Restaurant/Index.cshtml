@@ -1,7 +1,48 @@
-﻿
+﻿@model IEnumerable<RestaurantRater.Models.Restaurant>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>List of Restaurants</h2>
 
+<p>
+    @Html.ActionLink("Rate a Restaurant", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th></th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <!-- Change is the Text displayed on the link. 
+                    Edit is the Action name (will have an Edit action in the Controller
+                    Route values = the object item.RestaurantID (will pass this to the route) 
+                    The pipe (|) is just an organizer -->
+                @Html.ActionLink("Change", "Edit", new { id = item.RestaurantID }) | 
+                @Html.ActionLink("More Info", "Details", new { id = item.RestaurantID }) | 
+                @Html.ActionLink("Remove", "Delete", new { id = item.RestaurantID }) 
+            </td>
+        </tr>
+    }
+</table>
