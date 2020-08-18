@@ -1,0 +1,61 @@
+﻿@model RestaurantRater.Models.Restaurant
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<!-- This creates a form containing whatever we put in the {} -->
+@using (Html.BeginForm())
+{
+    <!-- Generates a hidden form field that's validated when the form is submitted
+        In the view, build the token. When passed to controller, controller will validate it
+        If it's not validated, the form won't run-->
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>New Restaurant</h4>
+        <hr/>
+        <!-- ValidationSummary : If something goes wrong, all the errors will show at the top
+            true (excludePropertyErrors) means exclude anything that will have a validation error somewhere else
+            default string message is ""
+            an object for HTML attibutes -->
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" } )
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new {  @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                <!-- Presents an entry field for Name. Bootstrap CSS attibrutes : "form-control" class -->
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control"}})
+                <!-- String validation message is "". When filling out a form on the web & forget a field, return a message of "" -->
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new {  @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                <!-- Presents an entry field for Address. Bootstrap CSS attibrutes : "form-control" class -->
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control"}})
+                <!-- String validation message is "". When filling out a form on the web & forget a field, return a message of "" -->
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rating, htmlAttributes: new {  @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                <!-- Presents an entry field for Rating. Bootstrap CSS attibrutes : "form-control" class -->
+                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control"}})
+                <!-- String validation message is "". When filling out a form on the web & forget a field, return a message of "" -->
+                @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form=group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit Rating" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
