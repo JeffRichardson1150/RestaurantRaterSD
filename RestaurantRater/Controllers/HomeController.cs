@@ -22,7 +22,8 @@ namespace RestaurantRater.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Message us with your comments and suggestions. \n" +
+                "Your RestaurantRater team.";
 
             return View();
         }
